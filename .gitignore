@@ -1,4 +1,7 @@
 # Logs
+CHANGELOG.md
+ISSUE_TEMPLATE.md
+README.md
 logs
 *.log
 npm-debug.log*

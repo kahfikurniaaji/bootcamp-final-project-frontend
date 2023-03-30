@@ -3,53 +3,53 @@ import {
   UserPlusIcon,
   UserIcon,
   ChartBarIcon,
+  ChevronDoubleRightIcon,
+  ChevronDoubleLeftIcon,
 } from "@heroicons/react/24/solid";
 
 export const statisticsCardsData = [
   {
-    color: "blue",
-    icon: BanknotesIcon,
-    title: "Today's Money",
-    value: "$53k",
+    color: "green",
+    icon: ChevronDoubleRightIcon,
+    title: "Check In",
     footer: {
-      color: "text-green-500",
-      value: "+55%",
-      label: "than last week",
+      color: "bg-green-500",
+      value: "Check In",
+      disabled: "false",
     },
   },
   {
     color: "pink",
-    icon: UserIcon,
-    title: "Today's Users",
-    value: "2,300",
+    icon: ChevronDoubleLeftIcon,
+    title: "Check Out",
     footer: {
-      color: "text-green-500",
-      value: "+3%",
+      color: "bg-red-500",
+      value: "Check Out",
       label: "than last month",
     },
   },
-  {
-    color: "green",
-    icon: UserPlusIcon,
-    title: "New Clients",
-    value: "3,462",
-    footer: {
-      color: "text-red-500",
-      value: "-2%",
-      label: "than yesterday",
-    },
-  },
-  {
-    color: "orange",
-    icon: ChartBarIcon,
-    title: "Sales",
-    value: "$103,430",
-    footer: {
-      color: "text-green-500",
-      value: "+5%",
-      label: "than yesterday",
-    },
-  },
+  // {
+  //   color: "green",
+  //   icon: UserPlusIcon,
+  //   title: "New Clients",
+  //   value: "3,462",
+  //   footer: {
+  //     color: "text-red-500",
+  //     value: "-2%",
+  //     label: "than yesterday",
+  //   },
+  // },
+  // {
+  //   color: "orange",
+  //   icon: ChartBarIcon,
+  //   title: "Sales",
+  //   value: "$103,430",
+  //   footer: {
+  //     color: "text-green-500",
+  //     value: "+5%",
+  //     label: "than yesterday",
+  //   },
+  // },
 ];
 
 export default statisticsCardsData;

@@ -7,12 +7,46 @@ import {
   Configurator,
   Footer,
 } from "@/widgets/layout";
-import routes from "@/routes";
-import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
+import {
+  useMaterialTailwindController,
+  setOpenConfigurator,
+  useID,
+} from "@/context";
+import AddEmployee from "@/pages/dashboard/add-employee";
+import { useState } from "react";
+import { useEffect } from "react";
+import jwtDecode from "jwt-decode";
+import route from "@/routes";
 
 export function Dashboard() {
+  const token = localStorage.getItem("accessToken");
+  const user = jwtDecode(token)?.user;
+  const { id, setId, role, setRole } = useID();
+  const [userId, setUserId] = useState("");
+  const [routes, setRoutes] = useState([]);
+
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
+
+  useEffect(() => {
+    if (!id || id != user.id) {
+      setId(user.id);
+    }
+    if (!role || role != user.role) {
+      setRole(user.role);
+    }
+    if (!routes.length) {
+      if (user.role == "superadmin") {
+        setRoutes([...route.routesSuperadmin]);
+      } else if (user.role == "admin") {
+        setRoutes(route.routesAdmin);
+      } else {
+        setRoutes(route.routesUser);
+      }
+    }
+
+    return () => {};
+  }, [localStorage.getItem("accessToken")]);
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
@@ -42,10 +76,11 @@ export function Dashboard() {
                 <Route exact path={path} element={element} />
               ))
           )}
+          <Route exact path={"/add-employee"} element={<AddEmployee />} />
         </Routes>
-        <div className="text-blue-gray-600">
+        {/* <div className="text-blue-gray-600">
           <Footer />
-        </div>
+        </div> */}
       </div>
     </div>
   );

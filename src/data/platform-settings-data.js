@@ -1,10 +1,17 @@
 export const platformSettingsData = [
+  // {
+  //   name: "Kahfi Kurnia Aji",
+  //   gender: "Laki-laki",
+  //   birth_date: "17 September 2000",
+  //   phone: "085721476789",
+  //   email: "kahfikurniaaji@gmail.com",
+  // },
   {
     title: "account",
     options: [
       {
         checked: true,
-        label: "Email me when someone follows me",
+        label: "Laki-laki",
       },
       {
         checked: false,

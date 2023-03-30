@@ -25,12 +25,35 @@ import {
   setOpenConfigurator,
   setOpenSidenav,
 } from "@/context";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
+
+  const timeString = () => {
+    const date = new Date();
+    let hours = date.getHours();
+    hours = hours >= 10 ? hours : `0${hours}`;
+    let minutes = date.getMinutes();
+    minutes = minutes >= 10 ? minutes : `0${minutes}`;
+    let seconds = date.getSeconds();
+    seconds = seconds >= 10 ? seconds : `0${seconds}`;
+    return `${hours}:${minutes}:${seconds}`;
+  };
+  const [time, setTime] = useState(timeString());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(timeString());
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <Navbar
@@ -45,7 +68,7 @@ export function DashboardNavbar() {
     >
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="capitalize">
-          <Breadcrumbs
+          {/* <Breadcrumbs
             className={`bg-transparent p-0 transition-all ${
               fixedNavbar ? "mt-1" : ""
             }`}
@@ -66,15 +89,20 @@ export function DashboardNavbar() {
             >
               {page}
             </Typography>
-          </Breadcrumbs>
+          </Breadcrumbs> */}
           <Typography variant="h6" color="blue-gray">
             {page}
           </Typography>
         </div>
+        <div className="flex">
+          <Typography variant="h6" color="blue-gray">
+            {time}
+          </Typography>
+        </div>
         <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+          {/* <div className="mr-auto md:mr-4 md:w-56">
             <Input label="Type here" />
-          </div>
+          </div> */}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -83,7 +111,7 @@ export function DashboardNavbar() {
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
-          <Link to="/auth/sign-in">
+          {/* <Link to="/auth/sign-in">
             <Button
               variant="text"
               color="blue-gray"
@@ -99,7 +127,7 @@ export function DashboardNavbar() {
             >
               <UserCircleIcon className="h-5 w-5 text-blue-gray-500" />
             </IconButton>
-          </Link>
+          </Link> */}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -107,7 +135,7 @@ export function DashboardNavbar() {
           >
             <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
           </IconButton>
-          <Menu>
+          {/* <Menu>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
                 <BellIcon className="h-5 w-5 text-blue-gray-500" />
@@ -184,7 +212,7 @@ export function DashboardNavbar() {
                 </div>
               </MenuItem>
             </MenuList>
-          </Menu>
+          </Menu> */}
         </div>
       </div>
     </Navbar>

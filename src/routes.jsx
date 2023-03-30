@@ -2,18 +2,24 @@ import {
   HomeIcon,
   UserCircleIcon,
   TableCellsIcon,
-  BellIcon,
-  ArrowRightOnRectangleIcon,
-  UserPlusIcon,
+  UserGroupIcon,
+  ClipboardDocumentCheckIcon,
+  CogIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
-import { SignIn, SignUp } from "@/pages/auth";
+import {
+  Home,
+  Profile,
+  TableAttendances,
+  TableEmployees,
+  Tables,
+} from "@/pages/dashboard";
+import { TableLogs } from "./pages/dashboard/table-logs";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
 
-export const routes = [
+export const routesSuperadmin = [
   {
     layout: "dashboard",
     pages: [
@@ -31,36 +37,106 @@ export const routes = [
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
+        name: "riwayat absensi",
+        path: "/history-attendance",
         element: <Tables />,
-      },
-      {
-        icon: <BellIcon {...icon} />,
-        name: "notifactions",
-        path: "/notifactions",
-        element: <Notifications />,
       },
     ],
   },
   {
-    title: "auth pages",
-    layout: "auth",
+    title: "admin pages",
+    layout: "dashboard",
     pages: [
       {
-        icon: <ArrowRightOnRectangleIcon {...icon} />,
-        name: "sign in",
-        path: "/sign-in",
-        element: <SignIn />,
+        icon: <ClipboardDocumentCheckIcon {...icon} />,
+        name: "daftar absensi",
+        path: "/attendances",
+        element: <TableAttendances />,
+      },
+    ],
+  },
+  {
+    title: "superadmin pages",
+    layout: "dashboard",
+    pages: [
+      {
+        icon: <UserGroupIcon {...icon} />,
+        name: "daftar pegawai",
+        path: "/employees",
+        element: <TableEmployees />,
       },
       {
-        icon: <UserPlusIcon {...icon} />,
-        name: "sign up",
-        path: "/sign-up",
-        element: <SignUp />,
+        icon: <CogIcon {...icon} />,
+        name: "app log",
+        path: "/logs",
+        element: <TableLogs />,
       },
     ],
   },
 ];
 
-export default routes;
+export const routesAdmin = [
+  {
+    layout: "dashboard",
+    pages: [
+      {
+        icon: <HomeIcon {...icon} />,
+        name: "dashboard",
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: "profile",
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        icon: <TableCellsIcon {...icon} />,
+        name: "riwayat absensi",
+        path: "/history-attendance",
+        element: <Tables />,
+      },
+    ],
+  },
+  {
+    title: "admin pages",
+    layout: "dashboard",
+    pages: [
+      {
+        icon: <ClipboardDocumentCheckIcon {...icon} />,
+        name: "daftar absensi",
+        path: "/attendances",
+        element: <TableAttendances />,
+      },
+    ],
+  },
+];
+
+export const routesUser = [
+  {
+    layout: "dashboard",
+    pages: [
+      {
+        icon: <HomeIcon {...icon} />,
+        name: "dashboard",
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: "profile",
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        icon: <TableCellsIcon {...icon} />,
+        name: "riwayat absensi",
+        path: "/history-attendance",
+        element: <Tables />,
+      },
+    ],
+  },
+];
+
+export default { routesSuperadmin, routesAdmin, routesUser };

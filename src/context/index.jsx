@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { createContext } from "react";
+import { useState } from "react";
+import { useContext } from "react";
 
 export const MaterialTailwind = React.createContext(null);
 MaterialTailwind.displayName = "MaterialTailwindContext";
@@ -29,6 +32,24 @@ export function reducer(state, action) {
     }
   }
 }
+
+export const IDContext = createContext();
+
+export const IDProvider = ({ children }) => {
+  const [id, setId] = useState("");
+  const [role, setRole] = useState("");
+
+  return (
+    <IDContext.Provider value={{ id, setId, role, setRole }}>
+      {children}
+    </IDContext.Provider>
+  );
+};
+
+export const useID = () => {
+  const { id, setId, role, setRole } = useContext(IDContext);
+  return { id, setId, role, setRole };
+};
 
 export function MaterialTailwindControllerProvider({ children }) {
   const initialState = {

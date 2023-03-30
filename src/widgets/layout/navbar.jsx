@@ -53,14 +53,14 @@ export function Navbar({ brandName, routes, action }) {
             {brandName}
           </Typography>
         </Link>
-        <div className="hidden lg:block">{navList}</div>
+        <div className="hidden md:block">{navList}</div>
         {React.cloneElement(action, {
-          className: "hidden lg:inline-block",
+          className: "hidden md:inline-block",
         })}
         <IconButton
           variant="text"
           size="sm"
-          className="ml-auto text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent md:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
@@ -74,7 +74,7 @@ export function Navbar({ brandName, routes, action }) {
         <div className="container mx-auto">
           {navList}
           {React.cloneElement(action, {
-            className: "w-full block lg:hidden",
+            className: "w-full block md:hidden",
           })}
         </div>
       </MobileNav>
@@ -83,7 +83,7 @@ export function Navbar({ brandName, routes, action }) {
 }
 
 Navbar.defaultProps = {
-  brandName: "Material Tailwind React",
+  brandName: "Absensi",
   action: (
     <a
       href="https://www.creative-tim.com/product/material-tailwind-dashboard-react"
